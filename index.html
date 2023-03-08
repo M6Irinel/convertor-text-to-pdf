@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Convertor Text to PDF</title>
+
+    <script src="./js/jspdf.umd.min.js"></script>
+    <script src="./js/jspdf.debug.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/M6Irinel/Framkcss@7afed426c3eb96b21f164839fc10279163084c3c/Framkcss.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+  </head>
+  <body class="reset">
+    <div class="flex f-column i-center h-100vh bg-gray-8 center gap-20">
+      <h1 class="white border-b">Convertor Text to PDF</h1>
+      <textarea class="p-2 fs-5 rounded-5 border-none" id="text" type="text" placeholder="text here..." rows="10" cols="50"></textarea>
+      <button class="p-2 border-none shadow rounded-2 fs-4 pointer flex i-center gap-20" id="btn"><span>Convert to pdf</span> <i class="fa-solid fa-file-arrow-down"></i></button>
+    </div>
+
+    <script>
+      const $ = document.querySelector.bind(document);
+
+      const btn = $("#btn");
+      const text = $("#text").value;
+
+      const spaces = { x: 10, y: 10 };
+      const nameFileOut = "outFile";
+
+      btn.addEventListener("click", () => {
+        const pdf = new jsPDF();
+
+        pdf.text(text, spaces.x, spaces.y);
+
+        pdf.save(nameFileOut);
+      });
+    </script>
+  </body>
+</html>
